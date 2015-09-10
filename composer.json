@@ -1,0 +1,49 @@
+{
+    "name": "supersixtwo/dblog",
+    "description": "Database stored custom logging for the Laravel PHP Framework. ",
+    "keywords": [
+	    "laravel",
+	    "laravel-logging",
+	    "custom-logging",
+	    "database-logging",
+	    "laravel-database",
+        "supersixtwo",
+        "dblog"
+    ],
+    "homepage": "https://github.com/supersixtwo/dblog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Troy Peterson",
+            "email": "troy@supersixtwo.com",
+            "homepage": "https://www.supersixtwo.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php" : ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : "4.*",
+        "scrutinizer/ocular": "~1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Supersixtwo\\Dblog\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Supersixtwo\\Dblog\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
