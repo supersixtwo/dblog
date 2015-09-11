@@ -6,17 +6,21 @@ use Supersixtwo\Dblog\DblogModel;
 
 class dblogClass
 {
+    
     /**
-     * Create a new dblog Instance
+     * Common function to save log files
+     *
+     * @param string $level RFC 5424 level name 
+     * @param string $message log or error message
+     * @param array $context contextual information about message
+     * 
+     * @return true
      */
-    public function __construct()
-    {
-        // constructor body
-    }
     
     private static function saveLog($level, $message, $context) {
 	    
 	    $dblog = new DblogModel;
+	    
 	    $dblog->level 	= $level;
 	    $dblog->message	= $message;
 	    $dblog->context	= json_encode($context);
@@ -24,6 +28,15 @@ class dblogClass
 	    
 	    return true; 
     }
+    
+    /**
+     * Log an RFC 5424 Level 0 'emergency' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
 
 	public static function emergency($message, array $context = null) {
 	    
@@ -33,6 +46,15 @@ class dblogClass
 	    
 	}
 	
+	/**
+     * Log an RFC 5424 Level 1 'alert' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
+	
 	public static function alert($message, array $context = null) {
 	    
 	    self::saveLog('alert', $message, $context);
@@ -40,6 +62,15 @@ class dblogClass
 	    return true;
 	     
 	}
+	
+	/**
+     * Log an RFC 5424 Level 2 'critical' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
 	
 	public static function critical($message, array $context = null) {
 	    
@@ -49,6 +80,15 @@ class dblogClass
 	    
 	}
 	
+	/**
+     * Log an RFC 5424 Level 3 'error' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
+	
 	public static function error($message, array $context = null) {
 		
 		self::saveLog('error', $message, $context);
@@ -57,12 +97,31 @@ class dblogClass
 	    		
 	}
 	
+	/**
+     * Log an RFC 5424 Level 4 'warning' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
+	
 	public static function warning($message, array $context = null) {
 		
 	    self::saveLog('warning', $message, $context);
 	    
-	    return true;		
+	    return true;
+	    		
 	}
+	
+	/**
+     * Log an RFC 5424 Level 5 'notic' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
 	
 	public static function notice($message, array $context = null) {
 		
@@ -72,6 +131,15 @@ class dblogClass
 		
 	}
 	
+	/**
+     * Log an RFC 5424 Level 6 'info' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
+	
 	public static function info($message, array $context = null) {
 		
 		self::saveLog('info', $message, $context);
@@ -79,6 +147,15 @@ class dblogClass
 	    return true;
 		
 	}
+	
+	/**
+     * Log an RFC 5424 Level 7 'debug' message
+     *
+     * @param string $message Log or error message.
+     * @param array $context Array of Contextual information about message
+     *
+     * @return true
+     */
 	
 	public static function debug($message, array $context = null) {
 		
