@@ -7,10 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class DblogModel extends Model
 {
  
-    // Tell it the table name (different than model name) 
+    /**
+     * declare the table name,
+     * different than the model name.
+     *
+     * @var  $table
+     */
+     
     protected $table = 'dblogs';
     
-    // remove the timestamps
+    /**
+     * Remove timestamps (not needed)
+     *
+     * @var $timestamps
+     */
+     
     public $timestamps = false;
 
     
