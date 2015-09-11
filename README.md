@@ -1,4 +1,4 @@
-# dblog
+# DBlog - Custom Laravel Logs Writer 
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE.md)
@@ -7,17 +7,48 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-**Note:** Replace ```Troy Peterson``` ```supersixtwo``` ```https://www.supersixtwo.com``` ```troy@supersixtwo.com``` ```dblog``` ```Database stored custom logging for the Laravel PHP Framework. ``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
+DBlog is a lightweight and simple to use Laravel Package that allows you write custom logs and error messages to a database table.
 
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Written to mirror the Laravel Log functions, plus providing the 8 logging levels defined in [RFC 5424] (https://tools.ietf.org/html/rfc5424), this package provides a quick and simple way to log messages and context to a custom database table.  
 
-## Install
+__NOTE:__  This package DOES NOT integrate and DOES NOT replace Laravel App or Monolog logging system. This is a separate logging system for capturing custom log messages. 
 
-Via Composer
+## Installation
+
+Via Composer:
 
 ``` bash
 $ composer require supersixtwo/dblog
+```
+
+Then add the service provider in `config/app.php`:
+
+``` php
+Supersixtwo\Dblog\DblogServiceProvider::class,
+```
+
+And the alias in `config/app.php`:
+
+``` php
+'DBlog'		=> Supersixtwo\Dblog\DblogClass::class,
+```
+
+Re-run the autoload:
+
+``` bash
+$ composer dump-autoload
+```
+
+Publish the migrations:
+
+``` bash
+$ php artisan vendor:migrate
+```
+
+Run the migrations to install the tables in the database:
+
+``` bash
+$ php artisan migrate
 ```
 
 ## Usage
@@ -47,8 +78,7 @@ If you discover any security related issues, please email troy@supersixtwo.com i
 
 ## Credits
 
-- [Troy Peterson][link-author]
-- [All Contributors][link-contributors]
+- [Troy Peterson][http://www.supersixtwo.com]
 
 ## License
 

@@ -2,19 +2,6 @@
 
 All Notable changes to `dblog` will be documented in this file
 
-## NEXT - YYYY-MM-DD
+## 1.0.0 - 2015-09-11
 
-### Added
-- Nothing
-
-### Deprecated
-- Nothing
-
-### Fixed
-- Nothing
-
-### Removed
-- Nothing
-
-### Security
-- Nothing
+Initial Release
