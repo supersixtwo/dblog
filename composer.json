@@ -1,6 +1,6 @@
 {
     "name": "supersixtwo/dblog",
-    "description": "Database stored custom logging for the Laravel PHP Framework. ",
+    "description": "Lightweight Laravel package for writing custom logs and error messages to a database.",
     "keywords": [
 	    "laravel",
 	    "laravel-logging",
