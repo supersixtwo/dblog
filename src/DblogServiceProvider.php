@@ -20,21 +20,38 @@ class dblogServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // use this if your package has views
+        /* For Future Use
+        
+        // Publish package views
         $this->loadViewsFrom(realpath(__DIR__.'/resources/views'), 'dblog');
         
-        // use this if your package has routes
+        */
+        
+        /* For Future use
+	    
+        // package routes
         $this->setupRoutes($this->app->router);
         
-        // use this if your package needs a config file
-        // $this->publishes([
-        //         __DIR__.'/config/config.php' => config_path('dblog.php'),
-        // ]);
+        */
+        
+        // publish migrations
+        $this->publishes([
+        	__DIR__.'/../database/migrations/' => database_path('/migrations')
+		], 'migrations');
+        
+        /* For future use
+	     
+	    // publish configuration files   
+        $this->publishes([
+                __DIR__.'/config/config.php' => config_path('dblog.php'),
+        ]);
         
         // use the vendor configuration file as fallback
-        // $this->mergeConfigFrom(
-        //     __DIR__.'/config/config.php', 'dblog'
-        // );
+        $this->mergeConfigFrom(
+            __DIR__.'/config/config.php', 'dblog'
+        );
+        
+        */
     }
     /**
      * Define the routes for the application.
