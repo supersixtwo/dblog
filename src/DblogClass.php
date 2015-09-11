@@ -13,52 +13,78 @@ class dblogClass
     {
         // constructor body
     }
-
-	public static function emergency() {
+    
+    private static function saveLog($level, $message, $context) {
 	    
-	    $level = 'emergency';
+	    $dblog = new DblogModel;
+	    $dblog->level 	= $level;
+	    $dblog->message	= $message;
+	    $dblog->context	= json_encode($context);
+	    $dblog->save();
+	    
+	    return true; 
+    }
+
+	public static function emergency($message, array $context = null) {
+	    
+	    self::saveLog('emergency', $message, $context);
+	    
+	    return true;
 	    
 	}
 	
-	public static function alert() {
+	public static function alert($message, array $context = null) {
 	    
-	    $level = 'alert'; 
+	    self::saveLog('alert', $message, $context);
+	    
+	    return true;
 	     
 	}
 	
-	public static function critical() {
+	public static function critical($message, array $context = null) {
 	    
-	    $level = 'critical';
+	    self::saveLog('critical', $message, $context);
+	    
+	    return true;
 	    
 	}
 	
-	public static function error() {
+	public static function error($message, array $context = null) {
 		
-		$level = 'error';
+		self::saveLog('error', $message, $context);
+	    
+	    return true;
+	    		
+	}
+	
+	public static function warning($message, array $context = null) {
+		
+	    self::saveLog('warning', $message, $context);
+	    
+	    return true;		
+	}
+	
+	public static function notice($message, array $context = null) {
+		
+		self::saveLog('notice', $message, $context);
+	    
+	    return true;
 		
 	}
 	
-	public static function warning() {
+	public static function info($message, array $context = null) {
 		
-		$level = 'warning';
-		
-	}
-	
-	public static function notice() {
-		
-		$level = 'notice';
+		self::saveLog('info', $message, $context);
+	    
+	    return true;
 		
 	}
 	
-	public static function info() {
+	public static function debug($message, array $context = null) {
 		
-		$level = 'info';
-		
-	}
-	
-	public static function debug() {
-		
-		$level = 'debug';
+		self::saveLog('null', $message, $context);
+	    
+	    return true;
 		
 	}
 
