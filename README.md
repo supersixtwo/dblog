@@ -53,10 +53,31 @@ $ php artisan migrate
 
 ## Usage
 
+### Logging Messages
+
+We've provided `DBlog` with a familiar interface mirroring Laravel's own built-in logging methods. These follow the same RFC 5424 defined logging levels including: __emergency, alert, critical, error, warning, notice, info, and debug__. 
+
 ``` php
-$dblog = new supersixtwo\dblog();
-echo $dblog->echoPhrase('Hello, supersixtwo!');
+DBlog::emergency($msg);
+DBlog::alert($msg);
+DBlog::critical($msg);
+DBlog::error($msg);
+DBlog::warning($msg);
+DBlog::notice($msg);
+DBlog::info($msg);
+DBlog::debut($msg);
 ```
+### Contextual Information
+
+In addition to logging text based messages, you can also an array of contextual information to the logging methods. This contextual data will converted to a `json` array and stored in separate column.
+
+``` php
+DBlog::info('New User Creation', ['id' => 45, 'created_by' => 'jdoe']);
+``` 
+
+## Database Schema
+
+
 
 ## Change log
 
