@@ -1,17 +1,14 @@
 # DBlog - Custom Laravel Logs Writer 
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Software License][ico-license]](LICENSE.md)
 
-DBlog is a lightweight and simple to use Laravel Package that allows you write custom logs and error messages to a database table.
+DBlog is a lightweight and simple [Laravel](http://www.laravel.com) Package that allows you write custom logs and error messages to a database table.
 
-Written to mirror the Laravel Log functions, plus providing the 8 logging levels defined in [RFC 5424] (https://tools.ietf.org/html/rfc5424), this package provides a quick and simple way to log messages and context to a custom database table.  
+Written to mirror the [Laravel Logging](http://laravel.com/docs/master/errors#logging) conventions, `DBlog` provides 8 logging levels defined in [RFC 5424](https://tools.ietf.org/html/rfc5424) and the ability to add an optional context array to each log.   
 
-__NOTE:__  This package DOES NOT integrate and DOES NOT replace Laravel App or Monolog logging system. This is a separate logging system for capturing custom log messages. 
+__NOTE:__  This package DOES NOT integrate with the Laravel / Monolog logging system and does not capture system level events. It's purpose is to be used to capture your own custom log needs.  
 
 ## Installation
 
@@ -42,7 +39,7 @@ $ composer dump-autoload
 Publish the migrations:
 
 ``` bash
-$ php artisan vendor:migrate
+$ php artisan vendor:publish
 ```
 
 Run the migrations to install the tables in the database:
@@ -55,7 +52,15 @@ $ php artisan migrate
 
 ### Logging Messages
 
-We've provided `DBlog` with a familiar interface mirroring Laravel's own built-in logging methods. These follow the same RFC 5424 defined logging levels including: __emergency, alert, critical, error, warning, notice, info, and debug__. 
+We've provided `DBlog` with a familiar interface, mirroring Laravel's own built-in logging methods. These follow the same RFC 5424 defined logging levels including: __emergency, alert, critical, error, warning, notice, info, and debug__. 
+
+Include the `DBlog` at the top of your class or model:
+
+``` php 
+use DBlog;
+```
+
+Use one of the 8 helper methods in your logic:
 
 ``` php
 DBlog::emergency($msg);
@@ -75,19 +80,45 @@ In addition to logging text based messages, you can also an array of contextual 
 DBlog::info('New User Creation', ['id' => 45, 'created_by' => 'jdoe']);
 ``` 
 
-## Data Model and Fields
+## DBlog Model and Table
 
-To access the database, reference the `DBlogModel`
+### Model and Table Names
+
+To avoid collisions and naming conflicts with the DBlog Facade or other tables, the database table can be accessed using the following:
+
+* Model Name: `DBlogModel`
+* Table Name: `dblogs`
+
+### `dblogs` Table Columns
+
+| Column            | Type             | Default Value     | Nullable | Comments                           |
+|-------------------|------------------|-------------------|----------|------------------------------------|
+| id                | int(10) unsigned |                   | NO       |                                    |
+| level_id          | int(11)          |                   | NO       | The RFC 5424 log level id          |
+| level_description | varchar(255)     |                   | NO       | The RFC 5424 log level description |
+| message           | text             |                   | NO       |                                    |
+| context           | text             |                   | YES      |                                    |
+| created_at        | timestamp        | CURRENT_TIMESTAMP | NO       |                                    |
+
+### Querying the Model
+
+Via Query Builder:
+
+``` php
+$logs = DB::table('dblogs')->get();
+```
+
+Eloquent:
+
+``` php 
+$logs = DBlogModel::all();
+```
+
 
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
-## Testing
-
-``` bash
-$ composer test
-```
 
 ## Contributing
 
@@ -95,15 +126,19 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email troy@supersixtwo.com instead of using the issue tracker.
+If you discover any security related issues, please email appsupport@supersixtwo.com instead of using the issue tracker.
 
 ## Credits
 
-- [Troy Peterson][http://www.supersixtwo.com]
+- [Troy Peterson](http://www.supersixtwo.com)
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Acknowledgements	
+
+This package is heavily inspired by the [Monolog Logging Library](https://github.com/Seldaek/monolog).
 
 [ico-version]: https://img.shields.io/packagist/v/supersixtwo/dblog.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
