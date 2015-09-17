@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use App;
 
-class DblogServiceProvider extends ServiceProvider
+class DBlogServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -75,9 +75,9 @@ class DblogServiceProvider extends ServiceProvider
     public function register()
     {
       
-      App::bind('DblogClass', function()
+      App::bind('DBlogClass', function()
         {
-            return new Supersixtwo\Dblog\DblogClass;
+            return new Supersixtwo\Dblog\DBlogClass;
         });
         
     }
