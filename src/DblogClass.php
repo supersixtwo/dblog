@@ -17,13 +17,18 @@ class dblogClass
      * @return true
      */
     
-    private static function saveLog($level, $message, $context) {
+    private static function saveLog($level_id, $level, $message, $context) {
 	    
+	    // instantiate the log model
 	    $dblog = new DblogModel;
 	    
-	    $dblog->level 	= $level;
-	    $dblog->message	= $message;
-	    $dblog->context	= json_encode($context);
+	    // add items to object
+	    $dblog->level_id	= $level_id;
+	    $dblog->level 		= $level;
+	    $dblog->message		= $message;
+	    $dblog->context		= json_encode($context);
+	    
+	    // save the model
 	    $dblog->save();
 	    
 	    return true; 
@@ -40,7 +45,7 @@ class dblogClass
 
 	public static function emergency($message, array $context = null) {
 	    
-	    self::saveLog('emergency', $message, $context);
+	    self::saveLog(0, 'emergency', $message, $context);
 	    
 	    return true;
 	    
@@ -57,7 +62,7 @@ class dblogClass
 	
 	public static function alert($message, array $context = null) {
 	    
-	    self::saveLog('alert', $message, $context);
+	    self::saveLog(1, 'alert', $message, $context);
 	    
 	    return true;
 	     
@@ -74,7 +79,7 @@ class dblogClass
 	
 	public static function critical($message, array $context = null) {
 	    
-	    self::saveLog('critical', $message, $context);
+	    self::saveLog(2, 'critical', $message, $context);
 	    
 	    return true;
 	    
@@ -91,7 +96,7 @@ class dblogClass
 	
 	public static function error($message, array $context = null) {
 		
-		self::saveLog('error', $message, $context);
+		self::saveLog(3, 'error', $message, $context);
 	    
 	    return true;
 	    		
@@ -108,7 +113,7 @@ class dblogClass
 	
 	public static function warning($message, array $context = null) {
 		
-	    self::saveLog('warning', $message, $context);
+	    self::saveLog(4, 'warning', $message, $context);
 	    
 	    return true;
 	    		
@@ -125,7 +130,7 @@ class dblogClass
 	
 	public static function notice($message, array $context = null) {
 		
-		self::saveLog('notice', $message, $context);
+		self::saveLog(5, 'notice', $message, $context);
 	    
 	    return true;
 		
@@ -142,7 +147,7 @@ class dblogClass
 	
 	public static function info($message, array $context = null) {
 		
-		self::saveLog('info', $message, $context);
+		self::saveLog(6, 'info', $message, $context);
 	    
 	    return true;
 		
@@ -159,7 +164,7 @@ class dblogClass
 	
 	public static function debug($message, array $context = null) {
 		
-		self::saveLog('null', $message, $context);
+		self::saveLog(7, 'null', $message, $context);
 	    
 	    return true;
 		

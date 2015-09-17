@@ -14,7 +14,8 @@ class CreateDblogsTable extends Migration
     {
         Schema::create('dblogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('level');
+            $table->int('level_id');
+            $table->string('level_description');
             $table->text('message');
             $table->text('context')->nullable();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));;
