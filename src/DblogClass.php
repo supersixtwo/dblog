@@ -2,7 +2,7 @@
 
 namespace Supersixtwo\Dblog;
 
-use Supersixtwo\Dblog\DblogModel;
+use Supersixtwo\Dblog\DBlogModel;
 
 class dblogClass
 {
@@ -20,7 +20,7 @@ class dblogClass
     private static function saveLog($level_id, $level, $message, $context) {
 	    
 	    // instantiate the log model
-	    $dblog = new DblogModel;
+	    $dblog = new DBlogModel;
 	    
 	    // add items to object
 	    $dblog->level_id	= $level_id;

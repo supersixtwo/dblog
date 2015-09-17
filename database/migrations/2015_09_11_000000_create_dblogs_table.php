@@ -14,7 +14,7 @@ class CreateDblogsTable extends Migration
     {
         Schema::create('dblogs', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('level_id');
+            $table->integer('level_id');
             $table->string('level_description');
             $table->text('message');
             $table->text('context')->nullable();

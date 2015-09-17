@@ -24,13 +24,13 @@ $ composer require supersixtwo/dblog
 Then add the service provider in `config/app.php`:
 
 ``` php
-Supersixtwo\Dblog\DblogServiceProvider::class,
+Supersixtwo\Dblog\DBlogServiceProvider::class,
 ```
 
 And the alias in `config/app.php`:
 
 ``` php
-'DBlog'		=> Supersixtwo\Dblog\DblogClass::class,
+'DBlog'		=> Supersixtwo\Dblog\DBlogClass::class,
 ```
 
 Re-run the autoload:
@@ -75,9 +75,9 @@ In addition to logging text based messages, you can also an array of contextual 
 DBlog::info('New User Creation', ['id' => 45, 'created_by' => 'jdoe']);
 ``` 
 
-## Database Schema
+## Data Model and Fields
 
-
+To access the database, reference the `DBlogModel`
 
 ## Change log
 
