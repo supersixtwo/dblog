@@ -4,8 +4,9 @@ namespace Supersixtwo\Dblog;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
+use App;
 
-class dblogServiceProvider extends ServiceProvider
+class DblogServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -61,7 +62,7 @@ class dblogServiceProvider extends ServiceProvider
      */
     public function setupRoutes(Router $router)
     {
-        $router->group(['namespace' => 'supersixtwo\dblog\Http\Controllers'], function($router)
+        $router->group(['namespace' => 'Supersixtwo\Dblog\Http\Controllers'], function($router)
         {
             require __DIR__.'/Http/routes.php';
         });
@@ -73,17 +74,12 @@ class dblogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerdblog();
-        
-        // use this if your package has a config file
-        // config([
-        //         'config/dblog.php',
-        // ]);
-    }
-    private function registerdblog()
-    {
-        $this->app->bind('dblog',function($app){
-            return new dblog($app);
+      
+      App::bind('DblogClass', function()
+        {
+            return new Supersixtwo\Dblog\DblogClass;
         });
+        
     }
+
 }

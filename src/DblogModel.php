@@ -4,7 +4,7 @@ namespace Supersixtwo\Dblog;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DBlogModel extends Model
+class DblogModel extends Model
 {
  
     /**

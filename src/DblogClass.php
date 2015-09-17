@@ -2,9 +2,12 @@
 
 namespace Supersixtwo\Dblog;
 
-use Supersixtwo\Dblog\DBlogModel;
+use Illuminate\Support\Facades\Facade;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\App;
+use Supersixtwo\Dblog\DblogModel;
 
-class dblogClass
+class DblogClass
 {
     
     /**
@@ -20,13 +23,13 @@ class dblogClass
     private static function saveLog($level_id, $level, $message, $context) {
 	    
 	    // instantiate the log model
-	    $dblog = new DBlogModel;
+	    $dblog = new DblogModel;
 	    
 	    // add items to object
-	    $dblog->level_id	= $level_id;
-	    $dblog->level 		= $level;
-	    $dblog->message		= $message;
-	    $dblog->context		= json_encode($context);
+	    $dblog->level_id			= $level_id;
+	    $dblog->level_description 	= $level;
+	    $dblog->message				= $message;
+	    $dblog->context				= json_encode($context);
 	    
 	    // save the model
 	    $dblog->save();
