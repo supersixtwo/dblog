@@ -102,13 +102,19 @@ To avoid collisions and naming conflicts with the DBlog Facade or other tables, 
 
 ### Querying the Model
 
-Via Query Builder:
+First, include the `DBlogModel` with the namespace:
+
+``` php
+use Supersixtwo\Dblog\DBlogModel;
+```
+
+Then via Query Builder:
 
 ``` php
 $logs = DB::table('dblogs')->get();
 ```
 
-Eloquent:
+or via Eloquent:
 
 ``` php 
 $logs = DBlogModel::all();
