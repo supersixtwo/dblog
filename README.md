@@ -70,7 +70,7 @@ DBlog::error($msg);
 DBlog::warning($msg);
 DBlog::notice($msg);
 DBlog::info($msg);
-DBlog::debut($msg);
+DBlog::debug($msg);
 ```
 ### Contextual Information
 
